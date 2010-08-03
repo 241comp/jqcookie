@@ -1,0 +1,18 @@
+<?php
+
+// Insert the jquery.ckie.js file (jquery.cookie.js replacement) on init
+function jqcookie_init() {
+  $path = drupal_get_path('module', 'jqcookie');
+  drupal_add_js("{$path}/includes/jquery.ckie.js");
+}
+
+// Remove other references to jquery.cookie.js
+function jqcookie_preprocess_page(&$vars) {
+	$scripts = drupal_add_js();
+	foreach($scripts['module'] as $key => $values) {
+		if (strpos($key, 'jquery.cookie.js') !== FALSE) {
+			unset($scripts['module'][$key]);
+		}
+	}
+	$vars['scripts'] = drupal_get_js('header', $scripts);
+}

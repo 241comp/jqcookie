@@ -1,0 +1,4 @@
+name = "jqcookie"
+description = "Insert the jquery.cookie.js code on servers with mod_security installed."
+package = "Other"
+core = 6.x
